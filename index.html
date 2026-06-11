@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Objectif 20/20 — Maths 1ère : Produit scalaire, Vecteurs, Droites, Trigo</title>
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+  :root{ --bleu:#1f6feb; --vert:#16a34a; --orange:#ea580c; --rose:#db2777; --rouge:#dc2626; --gris:#f4f6fb; }
+  *{box-sizing:border-box}
+  body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6;color:#15182b;
+       max-width:920px;margin:0 auto;padding:0 18px 90px;background:#fff}
+  header{background:linear-gradient(135deg,#1f6feb,#7c3aed);color:#fff;margin:0 -18px 22px;
+         padding:34px 24px;border-radius:0 0 18px 18px}
+  header h1{margin:0 0 6px;font-size:1.7em}
+  header p{margin:0;opacity:.93}
+  nav{position:sticky;top:0;background:#fff;padding:10px 0;border-bottom:2px solid #eee;
+      display:flex;flex-wrap:wrap;gap:8px;z-index:5}
+  nav a{font-size:.84em;text-decoration:none;background:var(--gris);color:#1f2937;
+        padding:6px 11px;border-radius:20px;border:1px solid #e3e8f0}
+  nav a:hover{background:var(--bleu);color:#fff}
+  h2{margin-top:48px;padding:11px 15px;border-radius:10px;background:var(--gris);border-left:6px solid var(--bleu);scroll-margin-top:60px}
+  h3{color:var(--bleu);margin-top:28px}
+  h4{margin:.3em 0}
+  .pourquoi{font-style:italic;color:#4b5563;border-left:3px solid #c7d2fe;padding-left:12px;margin:8px 0 14px}
+  .cours{background:#f8fbff;border:1px solid #dbeafe;border-radius:12px;padding:14px 18px;margin:14px 0}
+  .prop{background:#fff7ed;border:1px solid #fed7aa;border-left:5px solid var(--orange);border-radius:8px;padding:10px 16px;margin:14px 0}
+  .methode{background:#eef6ff;border:1px solid #bfdbfe;border-left:5px solid var(--bleu);border-radius:8px;padding:10px 16px;margin:14px 0}
+  .methode ol{margin:6px 0 0 0;padding-left:22px}
+  .methode li{margin:4px 0}
+  .exemple{background:#f5f3ff;border:1px solid #ddd6fe;border-left:5px solid #7c3aed;border-radius:8px;padding:10px 16px;margin:14px 0}
+  .piege{background:#fef2f2;border:1px solid #fecaca;border-left:5px solid var(--rouge);border-radius:8px;padding:10px 16px;margin:14px 0}
+  .astuce{background:#f0fdf4;border:1px solid #bbf7d0;border-left:5px solid var(--vert);border-radius:8px;padding:10px 16px;margin:14px 0}
+  .exo{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:14px 18px;margin:16px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .exo h4{color:var(--rose)}
+  details{margin-top:10px;background:#fafafa;border:1px dashed #cbd5e1;border-radius:8px;padding:8px 12px}
+  summary{cursor:pointer;font-weight:600;color:var(--vert)}
+  details[open]{background:#f0fdf4}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.95em}
+  th,td{border:1px solid #d1d5db;padding:7px 9px;text-align:center}
+  th{background:var(--bleu);color:#fff}
+  .badge{display:inline-block;font-size:.7em;padding:2px 8px;border-radius:10px;color:#fff;vertical-align:middle;margin-left:6px}
+  .f{background:#16a34a}.m{background:#ea580c}.d{background:#dc2626}
+  .plan{background:#fffbeb;border:2px solid #fde68a;border-radius:12px;padding:16px 20px;margin:18px 0}
+  .plan ol{margin:8px 0 0;padding-left:22px}
+  kbd{background:#111827;color:#fff;border-radius:5px;padding:1px 7px;font-size:.85em}
+  footer{margin-top:60px;color:#6b7280;font-size:.85em;text-align:center}
+  .memo td{text-align:left}
+</style>
+</head>
+<body>
+<header>
+  <h1>🎯 Objectif 20/20 — Maths 1ère (spé)</h1>
+  <p>Tout pour réviser <strong>de zéro en une journée</strong> : produit scalaire · vecteurs · droites · trigonométrie · fonctions affines.</p>
+</header>
+
+<div class="plan">
+<h3 style="margin-top:0">⚡ Les 5 réflexes qui rapportent des points</h3>
+<p style="margin-bottom:0">① toujours écrire la formule <em>avant</em> de remplacer ; ② un repère est <em>orthonormé</em> → on a le droit d'utiliser $xx'+yy'$ ; ③ « arrivée − départ » pour les coordonnées d'un vecteur ; ④ produit scalaire $=0$ ⇔ angle droit ; ⑤ rédiger une <em>conclusion</em> en français à la fin de chaque question.</p>
+</div>
+
+<nav>
+  <a href="#ps">1. Produit scalaire</a>
+  <a href="#vect">2. Vecteurs &amp; longueurs</a>
+  <a href="#droite">3. Droites</a>
+  <a href="#trigo">4. Trigonométrie</a>
+  <a href="#affine">5. Fonctions affines</a>
+  <a href="#memo">📋 Formulaire</a>
+  <a href="#controle">📝 Contrôle blanc</a>
+</nav>
+
+<!-- ===================== 1. PRODUIT SCALAIRE ===================== -->
+<h2 id="ps">1. Le produit scalaire</h2>
+<p class="pourquoi">À quoi ça sert ? À calculer des <strong>angles</strong>, à prouver qu'un angle est <strong>droit</strong>, à trouver des <strong>longueurs</strong> et à écrire des <strong>équations de droites</strong>. C'est la notion centrale du chapitre de géométrie.</p>
+
+<div class="cours">
+<h3>Définition</h3>
+<p>Le produit scalaire de deux vecteurs $\vec{u}$ et $\vec{v}$ est un <strong>nombre</strong> (pas un vecteur), noté $\vec{u}\cdot\vec{v}$. Il y a <strong>3 façons</strong> de le calculer ; on choisit selon ce que l'énoncé donne.</p>
+<table>
+<tr><th>On connaît…</th><th>Formule</th></tr>
+<tr><td>les <strong>coordonnées</strong> $\vec{u}\binom{x}{y}$, $\vec{v}\binom{x'}{y'}$ (repère orthonormé)</td><td>$\vec{u}\cdot\vec{v}=xx'+yy'$</td></tr>
+<tr><td>les <strong>normes</strong> et l'<strong>angle</strong> $\theta$ entre les vecteurs</td><td>$\vec{u}\cdot\vec{v}=\|\vec{u}\|\,\|\vec{v}\|\cos\theta$</td></tr>
+<tr><td>un <strong>projeté orthogonal</strong> $H$ de $C$ sur $(AB)$</td><td>$\vec{AB}\cdot\vec{AC}=\pm\,AB\times AH$</td></tr>
+</table>
+<p>Cas particulier essentiel : $\vec{u}\cdot\vec{u}=\|\vec{u}\|^2$ (on l'appelle le <strong>carré scalaire</strong>).</p>
+</div>
+
+<div class="prop">
+<strong>Les règles de calcul (bilinéarité &amp; symétrie)</strong>
+<ul>
+<li><strong>Symétrie</strong> : $\vec{u}\cdot\vec{v}=\vec{v}\cdot\vec{u}$ → l'ordre n'a aucune importance.</li>
+<li><strong>Bilinéarité</strong> : on développe <em>comme une multiplication</em> →
+$\vec{u}\cdot(\vec{v}+\vec{w})=\vec{u}\cdot\vec{v}+\vec{u}\cdot\vec{w}$ et $(k\vec{u})\cdot\vec{v}=k(\vec{u}\cdot\vec{v})$.</li>
+</ul>
+</div>
+
+<div class="prop">
+<strong>« Et on développe » — identités à connaître par cœur</strong>
+$$\|\vec{u}+\vec{v}\|^2=\|\vec{u}\|^2+2\,\vec{u}\cdot\vec{v}+\|\vec{v}\|^2$$
+$$\|\vec{u}-\vec{v}\|^2=\|\vec{u}\|^2-2\,\vec{u}\cdot\vec{v}+\|\vec{v}\|^2$$
+$$\vec{u}\cdot\vec{v}=\tfrac12\big(\|\vec{u}+\vec{v}\|^2-\|\vec{u}\|^2-\|\vec{v}\|^2\big)\quad(\text{formule de polarisation})$$
+</div>
+
+<div class="astuce">
+<strong>🎯 Détecteur d'angle droit</strong> : $\vec{u}\perp\vec{v}\iff\vec{u}\cdot\vec{v}=0$. C'est l'outil n°1 pour montrer qu'un triangle est rectangle.<br>
+<strong>↪ Chasles</strong> : $\vec{AB}=\vec{AI}+\vec{IB}$, pour décomposer un vecteur avant de calculer.
+</div>
+
+<div class="methode">
+<strong>Méthode — Montrer qu'un triangle $ABC$ est rectangle en $A$</strong>
+<ol>
+<li>Calculer les coordonnées de $\vec{AB}$ et $\vec{AC}$ (arrivée − départ).</li>
+<li>Calculer le produit scalaire $\vec{AB}\cdot\vec{AC}=xx'+yy'$.</li>
+<li>Si le résultat est $0$ → les vecteurs sont orthogonaux → triangle rectangle en $A$. Sinon, il ne l'est pas. <strong>Conclure en français.</strong></li>
+</ol>
+</div>
+
+<div class="exemple">
+<strong>Exemple rédigé.</strong> $A(1;2)$, $B(5;0)$, $C(3;6)$.<br>
+$\vec{AB}\binom{4}{-2}$, $\vec{AC}\binom{2}{4}$. &nbsp; $\vec{AB}\cdot\vec{AC}=4\times2+(-2)\times4=8-8=0$.<br>
+Le produit scalaire est nul, donc $\vec{AB}\perp\vec{AC}$ : <em>le triangle $ABC$ est rectangle en $A$.</em>
+</div>
+
+<div class="piege">
+<strong>⚠️ Pièges fréquents</strong>
+<ul>
+<li>Le produit scalaire est un <strong>nombre</strong> — n'écris jamais une flèche sur le résultat.</li>
+<li>La formule $xx'+yy'$ n'est valable que dans un repère <strong>orthonormé</strong> (toujours vérifier que l'énoncé le précise).</li>
+<li>Ne confonds pas $\|\vec{u}+\vec{v}\|^2$ et $\|\vec{u}\|^2+\|\vec{v}\|^2$ : il y a le terme $+2\,\vec{u}\cdot\vec{v}$ !</li>
+</ul>
+</div>
+
+<div class="exo">
+<h4>Exercice 1 — Calcul par coordonnées <span class="badge f">facile</span></h4>
+<p>$\vec{u}\binom{3}{-2}$ et $\vec{v}\binom{4}{6}$. a) Calculer $\vec{u}\cdot\vec{v}$. b) Sont-ils orthogonaux ?</p>
+<details><summary>Correction</summary>
+<p>a) $\vec{u}\cdot\vec{v}=3\times4+(-2)\times6=12-12=0$. &nbsp; b) Comme c'est $0$, ils sont <strong>orthogonaux</strong>.</p>
+</details>
+</div>
+
+<div class="exo">
+<h4>Exercice 2 — Avec l'angle <span class="badge f">facile</span></h4>
+<p>$\|\vec{u}\|=5$, $\|\vec{v}\|=3$, angle $=60°$. Calculer $\vec{u}\cdot\vec{v}$.</p>
+<details><summary>Correction</summary>
+<p>$\vec{u}\cdot\vec{v}=5\times3\times\cos 60°=15\times\tfrac12=7{,}5$.</p>
+</details>
+</div>
+
+<div class="exo">
+<h4>Exercice 3 — Triangle rectangle <span class="badge m">moyen</span></h4>
+<p>$A(0;1)$, $B(4;3)$, $C(2;-3)$. Le triangle est-il rectangle en $A$ ?</p>
+<details><summary>Correction</summary>
+<p>$\vec{AB}\binom{4}{2}$, $\vec{AC}\binom{2}{-4}$. &nbsp; $\vec{AB}\cdot\vec{AC}=4\times2+2\times(-4)=8-8=0$.</p>
+<p>Donc $\vec{AB}\perp\vec{AC}$ : <strong>oui, rectangle en $A$.</strong></p>
+</details>
+</div>
+
+<div class="exo">
+<h4>Exercice 4 — Développer $\|\vec{u}+\vec{v}\|$ <span class="badge m">moyen</span></h4>
+<p>$\|\vec{u}\|=3$, $\|\vec{v}\|=5$, $\vec{u}\cdot\vec{v}=-4$. Calculer $\|\vec{u}+\vec{v}\|$.</p>
+<details><summary>Correction</summary>
+<p>$\|\vec{u}+\vec{v}\|^2=3^2+2(-4)+5^2=9-8+25=26$, donc $\|\vec{u}+\vec{v}\|=\sqrt{26}\approx5{,}1$.</p>
+</details>
+</div>
+
+<div class="exo">
+<h4>Exercice 5 — Polarisation <span class="badge d">difficile</span></h4>
+<p>$\|\vec{u}\|=4$, $\|\vec{v}\|=2$, $\|\vec{u}+\vec{v}\|=\sqrt{28}$. Calculer $\vec{u}\cdot\vec{v}$ puis l'angle $\theta$.</p>
+<details><summary>Correction</summary>
+<p>$\vec{u}\cdot\vec{v}=\tfrac12(28-16-4)=\tfrac12\times8=4$.</p>
+<p>Puis $\cos\theta=\dfrac{\vec{u}\cdot\vec{v}}{\|\vec{u}\|\,\|\vec{v}\|}=\dfrac{4}{4\times2}=\tfrac12$, donc $\theta=\dfrac{\pi}{3}=60°$.</p>
+</details>
+</div>
+
+<!-- ===================== 2. VECTEURS ===================== -->
+<h2 id="vect">2. Vecteurs &amp; longueurs</h2>
+<p class="pourquoi">À quoi ça sert ? Tout part de là : pour calculer un produit scalaire ou une distance, il faut d'abord savoir trouver les <strong>coordonnées</strong> et la <strong>norme</strong> d'un vecteur.</p>
+
+<div class="cours">
+<h3>Coordonnées d'un vecteur (2 points)</h3>
+<p>Pour $A(x_A;y_A)$ et $B(x_B;y_B)$, on fait <strong>« arrivée − départ »</strong> :
+$$\vec{AB}\begin{pmatrix}x_B-x_A\\[2pt]y_B-y_A\end{pmatrix}$$</p>
+<h3>Norme (= longueur)</h3>
+<p>$\vec{u}\binom{x}{y}\;\Rightarrow\;\|\vec{u}\|=\sqrt{x^2+y^2}$ &nbsp;; &nbsp; distance $AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}$.</p>
+<h3>Milieu &amp; colinéarité (bonus utile)</h3>
+<p>Milieu de $[AB]$ : $M\left(\dfrac{x_A+x_B}{2};\dfrac{y_A+y_B}{2}\right)$. &nbsp;
+$\vec{u}\binom{x}{y}$ et $\vec{v}\binom{x'}{y'}$ sont <strong>colinéaires</strong> (parallèles) ssi $xy'-x'y=0$.</p>
+</div>
+
+<div class="piege">
+<strong>⚠️ Piège</strong> : ne JAMAIS faire « départ − arrivée ». Pour $\vec{AB}$, c'est $B$ moins $A$. Si tu inverses, tu obtiens $\vec{BA}=-\vec{AB}$.
+</div>
+
+<div class="exo">
+<h4>Exercice 6 — Coordonnées <span class="badge f">facile</span></h4>
+<p>$A(-2;5)$, $B(3;1)$. Donner $\vec{AB}$ et $\vec{BA}$.</p>
+<details><summary>Correction</summary>
+<p>$\vec{AB}\binom{5}{-4}$ ; &nbsp; $\vec{BA}\binom{-5}{4}=-\vec{AB}$.</p>
+</details>
+</div>
+
+<div class="exo">
+<h4>Exercice 7 — Longueur <span class="badge f">facile</span></h4>
+<p>$A(-1;3)$, $B(2;-1)$. Calculer $AB$.</p>
+<details><summary>Correction</summary>
+<p>$AB=\sqrt{(2+1)^2+(-1-3)^2}=\sqrt{9+16}=\sqrt{25}=5$.</p>
+</details>
+</div>
+
+<div class="exo">
+<h4>Exercice 8 — Nature d'un triangle <span class="badge d">difficile</span></h4>
+<p>$A(1;1)$, $B(4;2)$, $C(2;4)$. Montrer que $ABC$ est isocèle. Est-il rectangle ?</p>
+<details><summary>Correction</summary>
+<p>Longueurs : $AB=\sqrt{3^2+1^2}=\sqrt{10}$ ; $AC=\sqrt{1^2+3^2}=\sqrt{10}$ ; $BC=\sqrt{(-2)^2+2^2}=\sqrt8$.</p>
+<p>$AB=AC=\sqrt{10}$ → <strong>isocèle en $A$.</strong></p>
+<p>Test angle droit : $\vec{AB}\binom{3}{1}$, $\vec{AC}\binom{1}{3}$, $\vec{AB}\cdot\vec{AC}=3+3=6\neq0$ → <strong>pas rectangle.</strong></p>
+</details>
+</div>
+
+<!-- ===================== 3. DROITES ===================== -->
+<h2 id="droite">3. Équations de droites</h2>
+<p class="pourquoi">À quoi ça sert ? À décrire une droite par une équation, à tester si un point est dessus, et à savoir si deux droites sont parallèles ou perpendiculaires.</p>
+
+<div class="cours">
+<p>Une droite a une <strong>équation cartésienne</strong> : $\;ax+by+c=0$ (avec $a,b$ non tous nuls).</p>
+<ul>
+<li><strong>Vecteur normal</strong> (perpendiculaire à la droite) : $\vec{n}\binom{a}{b}$.</li>
+<li><strong>Vecteur directeur</strong> (le long de la droite) : $\vec{d}\binom{-b}{a}$.</li>
+<li>$d\parallel d'$ ⇔ leurs vecteurs directeurs sont colinéaires. &nbsp; $d\perp d'$ ⇔ leurs normaux sont orthogonaux (produit scalaire $=0$).</li>
+</ul>
+</div>
+
+<div class="methode">
+<strong>Méthode — Équation d'une droite passant par $A$ et de vecteur normal $\vec{n}\binom{a}{b}$</strong>
+<ol>
+<li>Écrire l'équation sous la forme $ax+by+c=0$ (mettre les valeurs de $a$ et $b$ du normal).</li>
+<li>Remplacer $x$ et $y$ par les coordonnées de $A$ pour trouver $c$.</li>
+<li>Réécrire l'équation finale.</li>
+</ol>
+</div>
+
+<div class="exemple">
+<strong>Exemple rédigé.</strong> Droite par $A(1;4)$, normal $\vec{n}\binom{3}{-1}$.<br>
+Forme : $3x-y+c=0$. On remplace : $3(1)-4+c=0\Rightarrow c=1$. &nbsp; <em>Donc $d:\;3x-y+1=0$.</em>
+</div>
+
+<div class="exo">
+<h4>Exercice 9 — Lire les vecteurs <span class="badge f">facile</span></h4>
+<p>$d:\;2x-3y+6=0$. Donner un vecteur normal et un vecteur directeur.</p>
+<details><summary>Correction</summary>
+<p>Normal $\vec{n}\binom{2}{-3}$ ; directeur $\vec{d}\binom{3}{2}$ (on prend $\binom{-b}{a}$).</p>
+</details>
+</div>
+
+<div class="exo">
+<h4>Exercice 10 — Perpendiculaires ? <span class="badge m">moyen</span></h4>
+<p>$d:\;x+2y-5=0$ et $d':\;2x-y+1=0$.</p>
+<details><summary>Correction</summary>
+<p>Normaux $\binom{1}{2}$ et $\binom{2}{-1}$ : produit scalaire $=2-2=0$ → <strong>$d\perp d'$.</strong></p>
+</details>
+</div>
+
+<div class="exo">
+<h4>Exercice 11 — Médiatrice (type contrôle) <span class="badge d">difficile</span></h4>
+<p>$A(1;2)$, $B(5;4)$. Déterminer l'équation de la médiatrice de $[AB]$.</p>
+<details><summary>Correction</summary>
+<p>La médiatrice passe par le milieu $M(3;3)$ et est perpendiculaire à $(AB)$, donc $\vec{AB}\binom{4}{2}$ est un <strong>vecteur normal</strong>.</p>
+<p>Forme : $4x+2y+c=0$. En $M(3;3)$ : $12+6+c=0\Rightarrow c=-18$. &nbsp; <em>Médiatrice : $4x+2y-18=0$</em> (ou simplifié $2x+y-9=0$).</p>
+</details>
+</div>
+
+<!-- ===================== 4. TRIGO ===================== -->
+<h2 id="trigo">4. Trigonométrie</h2>
+<p class="pourquoi">À quoi ça sert ? À travailler avec des angles (en radians), à connaître les valeurs « par cœur » et à résoudre des équations du type $\cos x=a$.</p>
+
+<div class="cours">
+<p>Sur le <strong>cercle trigonométrique</strong> (rayon 1), l'angle $x$ (en radians) repère le point $(\cos x;\sin x)$.</p>
+<p>Radians : $180°=\pi$. Donc $30°=\frac{\pi}{6}$, $45°=\frac{\pi}{4}$, $60°=\frac{\pi}{3}$, $90°=\frac{\pi}{2}$.</p>
+<table>
+<tr><th>$x$</th><th>$0$</th><th>$\frac{\pi}{6}$</th><th>$\frac{\pi}{4}$</th><th>$\frac{\pi}{3}$</th><th>$\frac{\pi}{2}$</th></tr>
+<tr><th>$\cos x$</th><td>$1$</td><td>$\frac{\sqrt3}{2}$</td><td>$\frac{\sqrt2}{2}$</td><td>$\frac12$</td><td>$0$</td></tr>
+<tr><th>$\sin x$</th><td>$0$</td><td>$\frac12$</td><td>$\frac{\sqrt2}{2}$</td><td>$\frac{\sqrt3}{2}$</td><td>$1$</td></tr>
+</table>
+</div>
+
+<div class="prop">
+<strong>À connaître</strong> : $\cos^2x+\sin^2x=1$ ; $-1\le\cos x\le1$ et $-1\le\sin x\le1$ ; $\cos$ est <strong>paire</strong> ($\cos(-x)=\cos x$), $\sin$ est <strong>impaire</strong> ($\sin(-x)=-\sin x$), toutes deux $2\pi$-périodiques. La fonction $x\mapsto\sin x$ est définie sur $\mathbb{R}$.
+</div>
+
+<div class="astuce">
+<strong>Astuce mémo</strong> pour la ligne des cosinus : $\frac{\sqrt4}{2},\frac{\sqrt3}{2},\frac{\sqrt2}{2},\frac{\sqrt1}{2},\frac{\sqrt0}{2}$ = $1,\frac{\sqrt3}{2},\frac{\sqrt2}{2},\frac12,0$. Le sinus, c'est la même chose <em>à l'envers</em>.
+</div>
+
+<div class="exo">
+<h4>Exercice 12 — Valeurs remarquables <span class="badge f">facile</span></h4>
+<p>Donner $\cos\frac{\pi}{4}$, $\sin\frac{\pi}{3}$, $\cos\frac{\pi}{2}$.</p>
+<details><summary>Correction</summary>
+<p>$\frac{\sqrt2}{2}$ ; &nbsp; $\frac{\sqrt3}{2}$ ; &nbsp; $0$.</p>
+</details>
+</div>
+
+<div class="exo">
+<h4>Exercice 13 — Identité fondamentale <span class="badge m">moyen</span></h4>
+<p>$\cos x=\frac35$ et $x\in[0;\frac{\pi}{2}]$. Calculer $\sin x$.</p>
+<details><summary>Correction</summary>
+<p>$\sin^2x=1-\frac{9}{25}=\frac{16}{25}$, donc $\sin x=\pm\frac45$. Comme $x\in[0;\frac{\pi}{2}]$, $\sin x\ge0$ : $\sin x=\frac45$.</p>
+</details>
+</div>
+
+<div class="exo">
+<h4>Exercice 14 — Produit scalaire + trigo <span class="badge m">moyen</span></h4>
+<p>$\|\vec{u}\|=4$, $\|\vec{v}\|=2$, $\vec{u}\cdot\vec{v}=4$. Trouver l'angle $\theta$.</p>
+<details><summary>Correction</summary>
+<p>$\cos\theta=\frac{4}{4\times2}=\frac12\Rightarrow\theta=\frac{\pi}{3}$ ($60°$).</p>
+</details>
+</div>
+
+<!-- ===================== 5. AFFINE ===================== -->
+<h2 id="affine">5. Fonctions affines</h2>
+<p class="pourquoi">À quoi ça sert ? C'est le b.a.-ba : reconnaître une droite par son équation $y=ax+b$, lire la pente et le sens de variation.</p>
+
+<div class="cours">
+<p>$f(x)=ax+b$ : courbe = droite. $a$ = <strong>pente</strong> (coefficient directeur), $b$ = <strong>ordonnée à l'origine</strong> ($=f(0)$).</p>
+<p>À partir de 2 points : $a=\dfrac{y_B-y_A}{x_B-x_A}$. &nbsp; $a>0$ : croissante ; $a<0$ : décroissante ; $a=0$ : constante.</p>
+</div>
+
+<div class="exo">
+<h4>Exercice 15 — Trouver l'expression <span class="badge m">moyen</span></h4>
+<p>$f$ affine avec $f(1)=\frac13$ et $f(4)=\frac23$. Déterminer $f(x)$.</p>
+<details><summary>Correction</summary>
+<p>$a=\dfrac{\frac23-\frac13}{4-1}=\dfrac{\frac13}{3}=\dfrac19$. Puis $\frac19+b=\frac13\Rightarrow b=\frac29$. &nbsp; <em>$f(x)=\frac19x+\frac29$.</em></p>
+</details>
+</div>
+
+<div class="exo">
+<h4>Exercice 16 — Variation <span class="badge f">facile</span></h4>
+<p>$g(x)=-3x+5$. Sens de variation et ordonnée à l'origine ?</p>
+<details><summary>Correction</summary>
+<p>$a=-3<0$ → <strong>décroissante</strong> sur $\mathbb{R}$ ; $b=5$.</p>
+</details>
+</div>
+
+<!-- ===================== FORMULAIRE ===================== -->
+<h2 id="memo">📋 Formulaire à apprendre par cœur</h2>
+<div class="cours">
+<table class="memo">
+<tr><th>Notion</th><th>Formule</th></tr>
+<tr><td>Coordonnées de $\vec{AB}$</td><td>$\binom{x_B-x_A}{\,y_B-y_A}$ (arrivée − départ)</td></tr>
+<tr><td>Norme / distance</td><td>$\|\vec{u}\|=\sqrt{x^2+y^2}$ ; $AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}$</td></tr>
+<tr><td>Milieu de $[AB]$</td><td>$\left(\frac{x_A+x_B}{2};\frac{y_A+y_B}{2}\right)$</td></tr>
+<tr><td>Colinéarité</td><td>$\vec{u}\binom{x}{y},\vec{v}\binom{x'}{y'}$ colinéaires ⇔ $xy'-x'y=0$</td></tr>
+<tr><td>Produit scalaire (coord.)</td><td>$\vec{u}\cdot\vec{v}=xx'+yy'$</td></tr>
+<tr><td>Produit scalaire (angle)</td><td>$\vec{u}\cdot\vec{v}=\|\vec{u}\|\,\|\vec{v}\|\cos\theta$</td></tr>
+<tr><td>Orthogonalité</td><td>$\vec{u}\perp\vec{v}\iff\vec{u}\cdot\vec{v}=0$</td></tr>
+<tr><td>Norme d'une somme</td><td>$\|\vec{u}+\vec{v}\|^2=\|\vec{u}\|^2+2\,\vec{u}\cdot\vec{v}+\|\vec{v}\|^2$</td></tr>
+<tr><td>Droite</td><td>$ax+by+c=0$ ; normal $\binom{a}{b}$ ; directeur $\binom{-b}{a}$</td></tr>
+<tr><td>Trigo</td><td>$\cos^2x+\sin^2x=1$ ; valeurs : $\frac{\pi}{4}\to\frac{\sqrt2}{2}$, $\frac{\pi}{3}\to(\frac12;\frac{\sqrt3}{2})$, $\frac{\pi}{6}\to(\frac{\sqrt3}{2};\frac12)$</td></tr>
+<tr><td>Fonction affine</td><td>$f(x)=ax+b$ ; $a=\frac{y_B-y_A}{x_B-x_A}$</td></tr>
+</table>
+</div>
+
+<!-- ===================== CONTRÔLE BLANC ===================== -->
+<h2 id="controle">📝 Contrôle blanc (sur 20) — 45 min, sans le corrigé</h2>
+<div class="exo">
+<p><strong>On se place dans un repère orthonormé.</strong> Soit $A(1;1)$, $B(5;3)$, $C(0;4)$.</p>
+<p><strong>Ex. 1 (5 pts).</strong> a) Calculer les coordonnées de $\vec{AB}$ et $\vec{AC}$. b) Calculer $AB$ et $AC$. c) Le triangle $ABC$ est-il rectangle en $A$ ?</p>
+<p><strong>Ex. 2 (5 pts).</strong> a) Déterminer une équation cartésienne de la droite $(AB)$ (indice : $\vec{AB}$ est un vecteur directeur, prends $\vec{n}$ perpendiculaire). b) La droite $d:\;x-2y+3=0$ est-elle perpendiculaire à $(AB)$ ?</p>
+<p><strong>Ex. 3 (5 pts).</strong> On donne $\|\vec{u}\|=6$, $\|\vec{v}\|=2$ et l'angle $\theta=\frac{\pi}{3}$. a) Calculer $\vec{u}\cdot\vec{v}$. b) En déduire $\|\vec{u}+\vec{v}\|$.</p>
+<p><strong>Ex. 4 (5 pts).</strong> a) $\sin x=\frac{1}{2}$ avec $x\in[0;\frac{\pi}{2}]$ : donner $\cos x$. b) $f$ affine telle que $f(2)=1$ et $f(5)=7$ : déterminer $f(x)$ et son sens de variation.</p>
+
+<details><summary>Corrigé complet + barème</summary>
+<p><strong>Ex. 1.</strong> a) $\vec{AB}\binom{4}{2}$, $\vec{AC}\binom{-1}{3}$ <em>(2 pts)</em>. b) $AB=\sqrt{16+4}=\sqrt{20}=2\sqrt5$ ; $AC=\sqrt{1+9}=\sqrt{10}$ <em>(2 pts)</em>. c) $\vec{AB}\cdot\vec{AC}=4\times(-1)+2\times3=-4+6=2\neq0$ → <strong>non rectangle en $A$</strong> <em>(1 pt)</em>.</p>
+<p><strong>Ex. 2.</strong> a) $\vec{AB}\binom{4}{2}$ directeur → vecteur normal $\binom{2}{-4}$ (ou $\binom{1}{-2}$). Équation : $x-2y+c=0$ ; en $A(1;1)$ : $1-2+c=0\Rightarrow c=1$ → $(AB):\;x-2y+1=0$ <em>(3 pts)</em>. b) Normal de $(AB)$ : $\binom{1}{-2}$ ; normal de $d$ : $\binom{1}{-2}$. Ils sont colinéaires, donc les droites sont <strong>parallèles, pas perpendiculaires</strong> <em>(2 pts)</em>.</p>
+<p><strong>Ex. 3.</strong> a) $\vec{u}\cdot\vec{v}=6\times2\times\cos\frac{\pi}{3}=12\times\frac12=6$ <em>(2 pts)</em>. b) $\|\vec{u}+\vec{v}\|^2=6^2+2(6)+2^2=36+12+4=52$, donc $\|\vec{u}+\vec{v}\|=\sqrt{52}=2\sqrt{13}\approx7{,}2$ <em>(3 pts)</em>.</p>
+<p><strong>Ex. 4.</strong> a) $\cos^2x=1-\frac14=\frac34\Rightarrow\cos x=\frac{\sqrt3}{2}$ (positif car $x\in[0;\frac{\pi}{2}]$) <em>(2 pts)</em>. b) $a=\frac{7-1}{5-2}=\frac63=2$ ; $f(2)=1\Rightarrow 2\times2+b=1\Rightarrow b=-3$ → $f(x)=2x-3$, <strong>croissante</strong> ($a=2>0$) <em>(3 pts)</em>.</p>
+<p style="margin-top:8px"><strong>Barème :</strong> 20/20 si tout est juste ET rédigé avec une phrase de conclusion à chaque question.</p>
+</details>
+</div>
+
+<footer>
+Guide de révision « 0 → 20/20 en 1 journée » • Première spé maths (France)<br>
+Lis le cours → refais les exemples → enchaîne les exercices → apprends le formulaire → fais le contrôle blanc. 🍀
+</footer>
+
+<!-- ===================== ASSISTANT IA ===================== -->
+<button id="chatToggle" title="Pose une question à l'assistant IA">🤖 Aide</button>
+<div id="chatPanel" aria-hidden="true">
+  <div id="chatHead">
+    <span>🤖 Assistant Maths 1ère</span>
+    <button id="chatClose" title="Fermer">✕</button>
+  </div>
+  <div id="chatSettings">
+    <small>💡 Assistant gratuit, sans clé. Propulsé par Puter.js. À la <em>première</em> question, une petite fenêtre peut te demander de créer un compte Puter gratuit (une seule fois). Évite d'y mettre des infos personnelles.</small>
+  </div>
+  <div id="chatLog">
+    <div class="bot msg">Salut 👋 Pose-moi une question sur le produit scalaire, les vecteurs, les droites, la trigo ou les fonctions affines. Je peux aussi corriger un exercice ou réexpliquer une méthode.</div>
+  </div>
+  <form id="chatForm">
+    <input id="chatInput" type="text" placeholder="Ex : pourquoi le produit scalaire = 0 veut dire angle droit ?" autocomplete="off">
+    <button type="submit" id="chatSend">Envoyer</button>
+  </form>
+</div>
+
+<style>
+  #chatToggle{position:fixed;bottom:18px;right:18px;z-index:50;background:#7c3aed;color:#fff;border:none;
+    border-radius:30px;padding:12px 18px;font-size:1em;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+  #chatPanel{position:fixed;bottom:78px;right:18px;width:min(380px,92vw);height:min(540px,75vh);z-index:50;
+    background:#fff;border:1px solid #ddd;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.25);
+    display:none;flex-direction:column;overflow:hidden}
+  #chatPanel.open{display:flex}
+  #chatHead{background:linear-gradient(135deg,#1f6feb,#7c3aed);color:#fff;padding:11px 14px;display:flex;
+    justify-content:space-between;align-items:center;font-weight:600}
+  #chatHead button{background:transparent;border:none;color:#fff;font-size:1.1em;cursor:pointer}
+  #chatSettings{padding:9px 12px;background:#f8fafc;border-bottom:1px solid #eee;font-size:.78em}
+  #chatSettings label{display:block;margin-bottom:4px;color:#374151}
+  #chatSettings input{width:100%;padding:6px 8px;border:1px solid #cbd5e1;border-radius:6px}
+  #chatSettings small{display:block;margin-top:4px;color:#6b7280}
+  #chatLog{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:#fff}
+  .msg{padding:9px 12px;border-radius:12px;max-width:88%;font-size:.9em;line-height:1.5;white-space:pre-wrap}
+  .bot{background:#eef2ff;align-self:flex-start;border-bottom-left-radius:3px}
+  .user{background:#dcfce7;align-self:flex-end;border-bottom-right-radius:3px}
+  .err{background:#fef2f2;color:#b91c1c}
+  #chatForm{display:flex;gap:6px;padding:10px;border-top:1px solid #eee;background:#fafafa}
+  #chatInput{flex:1;padding:9px 10px;border:1px solid #cbd5e1;border-radius:8px}
+  #chatSend{background:#16a34a;color:#fff;border:none;border-radius:8px;padding:0 14px;cursor:pointer}
+  #chatSend:disabled{opacity:.5;cursor:default}
+</style>
+
+<script src="https://js.puter.com/v2/"></script>
+<script>
+(function(){
+  var SYSTEM = "Tu es un assistant de révision de mathématiques pour un élève de Première spécialité maths en France. "
+    + "Tu réponds TOUJOURS en français, de manière pédagogique, claire et concise. "
+    + "Tu te concentres sur les thèmes : produit scalaire (bilinéarité, symétrie, orthogonalité, développement de la norme d'une somme), "
+    + "vecteurs et coordonnées (arrivée moins départ), normes et distances, équations cartésiennes de droites (vecteur normal/directeur, perpendicularité), "
+    + "trigonométrie (cercle trigonométrique, valeurs remarquables, identité cos^2+sin^2=1) et fonctions affines. "
+    + "Donne les étapes de calcul. Écris les formules mathématiques en LaTeX entre des signes dollar, par exemple $\\vec{u}\\cdot\\vec{v}=xx'+yy'$. "
+    + "Si la question sort du programme de Première, dis-le gentiment et recadre.";
+  var history = [{role:"system",content:SYSTEM}];
+
+  var $=function(id){return document.getElementById(id);};
+  var toggle=$("chatToggle"), panel=$("chatPanel"), closeB=$("chatClose"),
+      form=$("chatForm"), input=$("chatInput"), send=$("chatSend"), log=$("chatLog");
+
+  toggle.addEventListener("click",function(){ panel.classList.toggle("open"); if(panel.classList.contains("open")) input.focus(); });
+  closeB.addEventListener("click",function(){ panel.classList.remove("open"); });
+
+  function add(role,text){
+    var d=document.createElement("div");
+    d.className="msg "+(role==="user"?"user":(role==="err"?"bot msg err":"bot"));
+    d.textContent=text;
+    log.appendChild(d); log.scrollTop=log.scrollHeight;
+    if(role!=="user" && window.MathJax && MathJax.typesetPromise){ MathJax.typesetPromise([d]); }
+    return d;
+  }
+
+  // Extrait le texte de la réponse, quel que soit le format renvoyé par Puter
+  function extract(resp){
+    if(!resp) return "";
+    if(typeof resp==="string") return resp;
+    if(resp.message){
+      var c=resp.message.content;
+      if(typeof c==="string") return c;
+      if(Array.isArray(c)) return c.map(function(p){ return (p&&p.text)||""; }).join("");
+    }
+    if(typeof resp.text==="string") return resp.text;
+    return "";
+  }
+
+  form.addEventListener("submit",function(ev){
+    ev.preventDefault();
+    var q=input.value.trim(); if(!q) return;
+    if(typeof puter==="undefined" || !puter.ai){
+      add("err","⚠️ La librairie de l'assistant ne s'est pas chargée (connexion ou bloqueur de pub ?). Recharge la page."); return;
+    }
+    add("user",q); input.value=""; send.disabled=true;
+    history.push({role:"user",content:q});
+    var thinking=add("bot","…");
+
+    // IA gratuite, sans clé (Puter.js)
+    puter.ai.chat(history, {model:"gpt-4o-mini"})
+    .then(function(resp){
+      thinking.remove();
+      var txt=extract(resp).trim();
+      if(!txt){ throw new Error("réponse vide"); }
+      history.push({role:"assistant",content:txt});
+      add("bot",txt);
+    })
+    .catch(function(e){
+      thinking.remove();
+      add("err","⚠️ Assistant indisponible ("+((e&&e.message)?e.message:e)+"). Réessaie dans un instant.");
+      history.pop();
+    })
+    .finally(function(){ send.disabled=false; input.focus(); });
+  });
+})();
+</script>
+</body>
+</html>
