@@ -441,6 +441,22 @@ Lis le cours → refais les exemples → enchaîne les exercices → apprends le
     + "Reste concis quand la question est simple, détaille davantage quand c'est un raisonnement.";
   var history = [{role:"system",content:SYSTEM}];
 
+  // L'assistant "voit" le contenu de la page (cours, méthodes, exercices, corrigés)
+  try {
+    var parts=[];
+    document.querySelectorAll("h2, h3, .cours, .prop, .methode, .exemple, .astuce, .piege, .exo").forEach(function(el){
+      var t=el.textContent.replace(/\s+/g," ").trim();
+      if(t) parts.push(t);
+    });
+    var ctx=parts.join("\n").slice(0,16000);
+    if(ctx){
+      history[0].content = SYSTEM
+        + "\n\nVoici le contenu exact de la fiche de révision que l'élève est en train de consulter "
+        + "(cours, méthodes, exercices numérotés et leurs corrigés). Appuie-toi dessus en priorité, "
+        + "reprends les mêmes notations, et tu peux renvoyer l'élève vers un exercice précis de la fiche :\n\n" + ctx;
+    }
+  } catch(e){}
+
   var $=function(id){return document.getElementById(id);};
   var toggle=$("chatToggle"), panel=$("chatPanel"), closeB=$("chatClose"),
       form=$("chatForm"), input=$("chatInput"), send=$("chatSend"), log=$("chatLog");
